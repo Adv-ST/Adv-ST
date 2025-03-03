@@ -1,0 +1,1 @@
+ m4t_predict "This is ridiculous." --task t2st --tgt_lang "eng" --src_lang "eng" --output_path "/data/dingjinyang/claude/NeMo-1.23.0/mustango/reference/This is ridiculous..wav"

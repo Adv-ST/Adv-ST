@@ -1,0 +1,4 @@
+fairseq2
+nemo
+seamless_communication
+tests

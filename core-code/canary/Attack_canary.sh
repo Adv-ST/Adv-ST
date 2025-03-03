@@ -1,0 +1,83 @@
+#!/bin/bash
+
+export HF_ENDPOINT="https://hf-mirror.com"
+
+date
+echo "job begin"
+
+
+# Speaker dir
+target_folders=(
+    "../core-code/database/vctk_selected/p285"
+    "../core-code/database/vctk_selected/p314"
+    "../core-code/database/aishell_selected/SSB0005"
+    "../core-code/database/aishell_selected/SSB1408"
+    "../core-code/database/voxpopuli_es/2009"
+    "../core-code/database/voxpopuli_es/2011"
+    "../core-code/database/de/de_1"
+    "../core-code/database/de/de_2"
+    "../core-code/database/fr/fr_1"
+    "../core-code/database/fr/fr_2"
+    "../core-code/database/it/it_1"
+    "../core-code/database/it/it_2"
+)
+
+# attack languages
+language_combinations=(
+    "eng"
+    "eng,fra"
+    "eng,fra,deu"
+    "eng,fra,deu,spa"
+)
+
+# target semantic
+sentences=(
+        "You make me sick."
+        "Shame on you."
+        "Are you insane?"
+        "Who do you think you're talking to?"
+        "Don't waste my time anymore."
+)
+
+epsilons=(0.5 0.1 0.01)
+
+for target_folder in "${target_folders[@]}"; do
+    if [[ $target_folder == *"vctk_selected"* ]]; then
+        src_lang="eng"
+    elif [[ $target_folder == *"voxpopuli_es"* ]]; then
+        src_lang="spa"
+    elif [[ $target_folder == *"de"* ]]; then
+        src_lang="deu"
+    elif [[ $target_folder == *"fr"* ]]; then
+        src_lang="fra"
+    fi
+
+    audio_file=$(find "$target_folder" -maxdepth 1 -type f -name '*.wav' | head -n 1)
+    if [[ ! -z "$audio_file" ]]; then
+        audio_file_name=$(basename "$audio_file" .wav)
+        for epsilon in "${epsilons[@]}"; do
+            for lang_combo in "${language_combinations[@]}"; do
+                for index in "${!sentences[@]}"; do
+                    sentence_index=$(($index + 1))
+                    sentence="${sentences[$index]}"
+                    lang_suffix=$(echo $lang_combo | tr ',' '-')
+                    out_folder="Generated/Attack-canary-eps-(${epsilon})-(${lang_suffix})/${audio_file_name}/${sentence_index}"
+                    mkdir -p "$out_folder"
+                    command="python Attack_canary.py --in \"$audio_file\" \
+                            --target \"$sentence\" \
+                            --out \"$out_folder\" \
+                            --lr 0.1 \
+                            --eps ${epsilon} \
+                            --bp 1  \
+                            --src_lang \"$src_lang\" \
+                            --tgtl \"$lang_combo\""
+                    echo "Executing: $command"
+                    eval "$command"
+                done
+            done
+        done
+    fi
+done
+
+echo "job end"
+date
