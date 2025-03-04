@@ -172,7 +172,7 @@ def calculate_text_sim(tgt_text, adv_text, tgt_text_eng, adv_text_eng):
     bert_embedding_tgt = bert_model.encode(tgt_text)
     bert_embedding_adv = bert_model.encode(adv_text)
     ESIM_tgt = util.pytorch_cos_sim(bert_embedding_tgt, bert_embedding_adv).item()
-    NSCORE_tgt = torch.exp(roberta.predict('mnli', roberta.encode(tgt_text_eng, adv_text_eng))[0][2]).item()
+    NSCORE_tgt = torch.exp(roberta.predict('mnli', roberta.encode(adv_text_eng, tgt_text_eng))[0][2]).item()
     return ESIM_tgt, NSCORE_tgt
 
 
