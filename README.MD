@@ -7,12 +7,12 @@ This repository contains the source code for the research paper **"Exploiting Vu
 - [Attack Seamless](#attack-seamless)
   - [Perturbation-based Attack](#perturbation-based-attack)
   - [Music-based Attack](#music-based-attack)
-  - [Physical attack](#physical-attack)
+  - [Physical Attack](#physical-attack)
   - [Evaluation](#evaluation)
 - [Attack Canary](#attack-canary)
   - [Perturbation-based Attack](#perturbation-based-attack-1)
   - [Music-based Attack](#music-based-attack-1)
-  - [Physical attack](#physical-attack-1)
+  - [Physical Attack](#physical-attack-1)
   - [Evaluation](#evaluation-1)
 - [Acknowledgements](#acknowledgements)
 
@@ -81,16 +81,16 @@ Details on these models and download instructions can be found in the [official 
       bash Attack_m4tlarge_tco.sh
    ```
 
-- For more convient attack test: single sample attack
+- For more convenient attack test: single sample attack
    ```bash
       # conda env: advst
       python Attack_seamless.py  --in audio_file \
-                                 --target \"You make me sick.\" \
-                                 --out \"Attack-m4tlarge-(eng,deu,fra,cmn)/${speaker}/${sentence_index}\" \
+                                 --target "You make me sick." \
+                                 --out "Attack-m4tlarge-(eng,deu,fra,cmn)/${speaker}/${sentence_index}" \
                                  --lr 0.1 \
                                  --eps 0.5 \
                                  --bp 1 \
-                                 --tgtl \"eng,cmn,deu,fra\""
+                                 --tgtl "eng,cmn,deu,fra"
    ```
 
 
@@ -158,20 +158,20 @@ Details on these models and download instructions can be found in the [official 
       bash Attack_m4tlarge_music_tco.sh
    ```
 
-- For more convient attack test: single sample attack
+- For more convenient attack test: single sample attack
    ```bash
       # conda env: advst
-      python Attack_seamless_music.py     --target \"You make me sick.\" \
-                                          --out \"Attack-m4tlarge-(eng,deu,fra,cmn)-music/${speaker}/${sentence_index}\" \
+      python Attack_seamless_music.py     --target "You make me sick." \
+                                          --out "Attack-m4tlarge-(eng,deu,fra,cmn)-music/${speaker}/${sentence_index}" \
                                           --lr 0.1 \
-                                          --tgtl \"eng,cmn,deu,fra\""
+                                          --tgtl "eng,cmn,deu,fra"
    ```
 
 
 
 
 ---
-### Physical attack
+### Physical Attack
 #### Environment Setup
 - Setup seamless and Mustango env as mentioned in music based attack.
 
@@ -202,15 +202,15 @@ Details on these models and download instructions can be found in the [official 
       bash Attack_m4tlarge_music_physical.sh
    ```
 
-- For more convient attack test: single sample attack
+- For more convenient attack test: single sample attack
    ```bash
       # conda env: advst
-      python Attack_seamless_music_physical.py     --target \"You make me sick.\" \
-                                                   --out \"Attack-m4tlarge-(eng,deu,fra,cmn)-music/${speaker}/${sentence_index}\" \
+      python Attack_seamless_music_physical.py     --target "You make me sick." \
+                                                   --out "Attack-m4tlarge-(eng,deu,fra,cmn)-music/${speaker}/${sentence_index}" \
                                                    --lr 0.1 \
                                                    --noise 0.98 \
-                                                   --tgtl \"eng\" \
-                                                   --speech_pth \"../../../core-code/LibriSpeech_wav/\"
+                                                   --tgtl "eng" \
+                                                   --speech_pth "../../../core-code/LibriSpeech_wav/"
    ```
 
 
@@ -336,8 +336,8 @@ We use the Seamless Expressive model to evaluate VSIM-E. Notably, access to the 
       cp -r core-code/canary/NeMo-1.23.0 ./
    ```
 
-2. **Setup Virtual Envirement:**
-   As canary uses different base dependencies from seamless, we need build a new virtual python envirement for attack canary.
+2. **Setup Virtual Environment:**
+   As canary uses different base dependencies from seamless, we need build a new virtual python environment for attack canary.
    ```bash
       conda create -n advst-canary python=3.10.12
       conda activate advst-canary
@@ -374,17 +374,17 @@ We evaluated the **canary-1b** in our experiments. Model details can be found in
       bash Attack_canary.sh
    ```
 
-- For more convient attack test: single sample attack
+- For more convenient attack test: single sample attack
    ```bash
       # conda env: advst-canary
       python Attack_canary.py  --in audio_file \
-                                 --target \"You make me sick.\" \
-                                 --out \"Generated/Attack-canary-eps-(0.5)-(eng,fra,deu,spa)/${speaker}/${sentence_index}\" \
+                                 --target "You make me sick." \
+                                 --out "Generated/Attack-canary-eps-(0.5)-(eng,fra,deu,spa)/${speaker}/${sentence_index}" \
                                  --lr 0.1 \
                                  --eps 0.5 \
                                  --bp 1 \
-                                 --src_lang \"eng\" \
-                                 --tgtl \"eng,fra,deu,spa\""
+                                 --src_lang "eng" \
+                                 --tgtl "eng,fra,deu,spa"
    ```
 
 
@@ -421,19 +421,19 @@ We evaluated the **canary-1b** in our experiments. Model details can be found in
       bash Attack_canary_music.sh
    ```
 
-- For more convient attack test: single sample attack
+- For more convenient attack test: single sample attack
    ```bash
       # conda env: advst-canary
-      python Attack_canary_music.py       --target \"You make me sick.\" \
-                                          --out \"Generated/Attack-canary-(eng,fra,deu,spa)-music/${speaker}/${sentence_index}\" \
+      python Attack_canary_music.py       --target "You make me sick." \
+                                          --out "Generated/Attack-canary-(eng,fra,deu,spa)-music/${speaker}/${sentence_index}" \
                                           --lr 0.1 \
-                                          --tgtl \"eng,fra,deu,spa\""
+                                          --tgtl "eng,fra,deu,spa"
    ```
 
 
 
 ---
-### Physical attack
+### Physical Attack
 #### Environment Setup
 - Setup Canary and Mustango env as mentioned in music based attack.
 
@@ -451,14 +451,14 @@ We evaluated the **canary-1b** in our experiments. Model details can be found in
       bash Attack_canary_music_physical.sh
    ```
 
-- For more convient attack test: single sample attack
+- For more convenient attack test: single sample attack
    ```bash
       # conda env: advst-canary
-      python Attack_seamless_music_physical.py     --target \"You make me sick.\" \
-                                                   --out \"Attack-m4tlarge-(eng,deu,fra,cmn)-music/${speaker}/${sentence_index}\" \
+      python Attack_seamless_music_physical.py     --target "You make me sick." \
+                                                   --out "Attack-m4tlarge-(eng,deu,fra,cmn)-music/${speaker}/${sentence_index}" \
                                                    --lr 0.1 \
                                                    --noise 0.98 \
-                                                   --tgtl \"eng\""
+                                                   --tgtl "eng"
    ```
 
 
@@ -491,14 +491,14 @@ Due to dependency conflicts between the music generation model and the language 
    cd NeMo-1.23.0/
    # conda env: adv-canary-eval
    python canary_evaluate.py        --mode "music" \
-                                    --in "../../demo_samples/canary/mustango/Generated/Attack-canary-(eng-fra-deu)-music/p285_126_mic1/3/zws-adv-580.wav"  \
+                                    --in "../demo_samples/canary/mustango/Generated/Attack-canary-(eng-fra-deu)-music/p285_126_mic1/3/zws-adv-580.wav"  \
                                     --target_lang "fra"  \
                                     --target_semantic "Are you insane?" \
                                     --gated_model_dir "./facebook/seamless-expressive" # the downloaded seamless expressive model dir
 
 
    python canary_evaluate.py        --mode "perturbation" \
-                                    --in "../../demo_samples/canary/Generated/Attack-canary-eps-(0.1)-(eng-fra-deu)/p285_126_mic1/4/bcb-adv-959.wav"  \
+                                    --in "../demo_samples/canary/Generated/Attack-canary-eps-(0.1)-(eng-fra-deu)/p285_126_mic1/4/bcb-adv-959.wav"  \
                                     --speaker_lang "eng"  \
                                     --target_lang "spa"  \
                                     --target_semantic "Who do you think you're talking to?" \
