@@ -120,7 +120,7 @@ Details on these models and download instructions can be found in the [official 
 ### Music-based Attack
 
 #### Environment Setup
-1. Setup seamless env as mentioned in perturbation based attack.
+1. Setup Seamless env as mentioned in perturbation based attack.
 2. Setup MusTango env
    -  Clone the modified Mustango model code. We have modified the [official MusTango code](https://github.com/AMAAI-Lab/mustango) to remove the `no_grad` operation during the music generation process, ensuring that the adversarial music optimization process enables gradient flow.
 
@@ -173,7 +173,7 @@ Details on these models and download instructions can be found in the [official 
 ---
 ### Physical Attack
 #### Environment Setup
-- Setup seamless and Mustango env as mentioned in music based attack.
+- Setup Seamless and Mustango env as mentioned in music based attack.
 
 #### Datasets
 1. We incorporate the [Aachen Impulse Response Database](https://openslr.org/20/) to simulate environmental reverberation.
@@ -247,7 +247,7 @@ We use the Seamless Expressive model to evaluate VSIM-E. Notably, access to the 
                                     --in "../../demo_samples/seamless/mustango/Generated/Attack-m4tlarge-(eng-cmn-deu)-music/p285_126_mic1/3/cqm-adv-409.wav"  \
                                     --target_lang "cmn"  \
                                     --target_semantic "Are you insane?" \
-                                    --gated_model_dir "./facebook/seamless-expressive" # the downloaded seamless expressive model dir
+                                    --gated_model_dir "./facebook/seamless-expressive" # the downloaded Seamless Expressive model dir
 
    
    python seamless_evaluate.py      --tgtm "seamlessM4T_large" \
@@ -257,7 +257,7 @@ We use the Seamless Expressive model to evaluate VSIM-E. Notably, access to the 
                                     --target_lang "cmn"  \
                                     --target_semantic "Don't waste my time anymore." \
                                     --original_audio "../../core-code/database/vctk_selected/p285/p285_126_mic1.wav" \
-                                    --gated_model_dir "./facebook/seamless-expressive" # the downloaded seamless expressive model dir
+                                    --gated_model_dir "./facebook/seamless-expressive" # the downloaded Seamless Expressive model dir
 ```
 
 
@@ -337,7 +337,7 @@ We use the Seamless Expressive model to evaluate VSIM-E. Notably, access to the 
    ```
 
 2. **Setup Virtual Environment:**
-   As canary uses different base dependencies from seamless, we need build a new virtual python environment for attack canary.
+   As canary uses different base dependencies from Seamless, we need build a new virtual python environment for attack canary.
    ```bash
       conda create -n advst-canary python=3.10.12
       conda activate advst-canary
@@ -494,7 +494,7 @@ Due to dependency conflicts between the music generation model and the language 
                                     --in "../demo_samples/canary/mustango/Generated/Attack-canary-(eng-fra-deu)-music/p285_126_mic1/3/zws-adv-580.wav"  \
                                     --target_lang "fra"  \
                                     --target_semantic "Are you insane?" \
-                                    --gated_model_dir "./facebook/seamless-expressive" # the downloaded seamless expressive model dir
+                                    --gated_model_dir "./facebook/seamless-expressive" # the downloaded Seamless Expressive model dir
 
 
    python canary_evaluate.py        --mode "perturbation" \
@@ -503,7 +503,7 @@ Due to dependency conflicts between the music generation model and the language 
                                     --target_lang "spa"  \
                                     --target_semantic "Who do you think you're talking to?" \
                                     --original_audio "../core-code/database/vctk_selected/p285/p285_126_mic1.wav" \
-                                    --gated_model_dir "./facebook/seamless-expressive" # the downloaded seamless expressive model dir
+                                    --gated_model_dir "./facebook/seamless-expressive" # the downloaded Seamless Expressive model dir
 ```
 
 
