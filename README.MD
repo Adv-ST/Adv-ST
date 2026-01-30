@@ -1,6 +1,6 @@
-# Exploiting Vulnerabilities in Speech Translation Systems through Targeted Adversarial Attacks
+# Exploring Security Vulnerabilities in Multilingual Speech Translation Systems via Deceptive Inputs
 
-This repository contains the source code for the research paper **"Exploiting Vulnerabilities in Speech Translation Systems through Targeted Adversarial Attacks"**. Visit our [project website](https://adv-st.github.io) to explore audio samples and learn more.
+This repository contains the source code for the research paper **"Exploring Security Vulnerabilities in Multilingual Speech Translation Systems via Deceptive Inputs"**. Visit our [project website](https://adv-st.github.io) to explore audio samples and learn more.
 
 
 - [Getting Started](#getting-started)
